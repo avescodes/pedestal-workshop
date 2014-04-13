@@ -15,7 +15,8 @@
      [:input.form-control {:type "text"
                            :name "title"
                            :id "title-input"
-                           :placeholder "I need to..."}]]]
+                           :placeholder "I need to..."
+                           :required true}]]]
    [:div.form-group
     [:label.control-label.col-sm-2 {:for "description-input"} "Description"]
     [:div.col-sm-10
