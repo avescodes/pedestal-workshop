@@ -29,6 +29,15 @@
        (map first)              ; (12341123 12357223 134571345)
        (map #(d/entity db %)))) ; ({:db/id 12341123} ...)
 
+(defn completed-todos [db]
+  (->> (d/q '[:find ?id
+              :where
+              [?id :todo/title]
+              [?id :todo/completed? true]]
+            db)
+       (map first)
+       (map #(d/entity db %))))
+
 (defn toggle-status [id status]
   @(d/transact conn [[:db/add id :todo/completed? status]]))
 
