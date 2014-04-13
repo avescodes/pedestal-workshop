@@ -4,6 +4,14 @@
             [hiccup.core :refer [html h]]
             [hiccup.form :as f]))
 
+(defn delete-todo-form [todo]
+  [:form
+   {:action (url-for :todo#delete
+                     :params {:id (:db/id todo)}
+                     :method-param "_method")
+    :method :post}
+   [:button.btn.btn-danger {:type "submit"} "Delete"]])
+
 (defn todo-form [] ;; Later, this could take an existing todo...
   [:form.form-horizontal
    {:action (url-for :todos#create)
@@ -50,7 +58,8 @@
                 (for [todo todos]
                   [:tr
                    [:td (:todo/title todo)]
-                   [:td (:todo/description todo)]])]]
+                   [:td (:todo/description todo)]
+                   [:td (delete-todo-form todo)]])]]
               [:p "All done!"])]
            (todo-form)]
           [:script {:src "http://code.jquery.com/jquery-2.1.0.min.js"}]

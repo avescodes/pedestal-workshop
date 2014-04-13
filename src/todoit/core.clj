@@ -35,7 +35,8 @@
      ["/goodbye" {:get goodbye-cruel-world}]
      ["/request" {:any handle-dump}]
      ["/todos" {:get [:todos todo/index]
-                :post [:todos#create todo/create]}]]]])
+                :post [:todos#create todo/create]}
+      ["/:id" {:delete [:todo#delete todo/delete]}]]]]])
 
 (def modified-namespaces (ns-tracker "src"))
 
@@ -45,6 +46,7 @@
                         route/query-params
                         (middleware/file-info)
                         (middleware/resource "public")
+                        (route/method-param :_method)
                         (router (fn []
                                   (doseq [ns-sym (modified-namespaces)]
                                     (require ns-sym :reload))

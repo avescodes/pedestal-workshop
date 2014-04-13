@@ -16,3 +16,9 @@
     (when title
       (db/create-todo title desc))
     (redirect (url-for :todos))))
+
+(defhandler delete [req]
+  (when-let [id (some-> (get-in req [:path-params :id])
+                        Long/parseLong)]
+    (db/delete-todo id))
+  (redirect (url-for :todos)))
