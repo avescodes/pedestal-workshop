@@ -1,10 +1,12 @@
 (ns todoit.core
   (:require [io.pedestal.http.route.definition :refer [defroutes]]
             [io.pedestal.http.route :as route :refer [router]]
+            [io.pedestal.http.body-params :refer [body-params]]
             [io.pedestal.http :as http]
             [io.pedestal.interceptor :refer [defon-request defon-response]]
             [ns-tracker.core :refer [ns-tracker]]
-            [ring.handler.dump :refer [handle-dump]]))
+            [ring.handler.dump :refer [handle-dump]]
+            [todoit.todo :as todo]))
 
 (defn hello-world [req]
   (let [name (get-in req [:query-params :name])]
@@ -25,10 +27,14 @@
    :headers {}})
 
 (defroutes routes
-  [[["/" ^:interceptors [affix-custom-server]
+  [[["/" ^:interceptors [http/html-body
+                         (body-params)
+                         affix-custom-server]
      ["/hello" ^:interceptors [capitalize-name] {:get hello-world}]
      ["/goodbye" {:get goodbye-cruel-world}]
-     ["/request" {:any handle-dump}]]]])
+     ["/request" {:any handle-dump}]
+     ["/todos" {:get [:todos todo/index]
+                :post [:todos#create handle-dump]}]]]])
 
 (def modified-namespaces (ns-tracker "src"))
 
