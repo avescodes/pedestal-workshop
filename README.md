@@ -14,7 +14,7 @@ Todo-it is a sample Pedestal application developed from scratch. Read more infor
 
 Inside `pedestal-workshop/`, run the command `lein run`. The first
 time you run this command Leiningen will fetch and install all of the
-applications dependencies.
+application's dependencies.
 
 Once the application starts, you will see something like the following:
 
@@ -30,6 +30,10 @@ INFO  org.eclipse.jetty.server.Server - Started @10431ms
 At this point, the application is ready. Visit or cURL
 <http://localhost:8080/hello> to verify the application is running
 properly (all but the very first commit should respond).
+
+If you've built or checked-out the final version of the application, visit <http://localhost:8080/todos> to see it in action.
+
+![Screenshot of the finished application](screenshot.png)
 
 ### Following along with the workshop
 
