@@ -11,5 +11,6 @@
                  [io.pedestal/pedestal.service-tools "0.3.1"]
                  [io.pedestal/pedestal.jetty "0.3.1"]
                  [ns-tracker "0.2.2"]
-                 [ring/ring-devel "1.2.2"]]
+                 [ring/ring-devel "1.2.2"]
+                 [hiccup "1.0.5"]]
   :main ^{:skip-aot true} todoit.core)

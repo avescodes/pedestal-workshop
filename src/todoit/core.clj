@@ -2,6 +2,7 @@
   (:require [io.pedestal.http.route.definition :refer [defroutes]]
             [io.pedestal.http.route :as route :refer [router]]
             [io.pedestal.http.body-params :refer [body-params]]
+            [io.pedestal.http.ring-middlewares :as middleware]
             [io.pedestal.http :as http]
             [io.pedestal.interceptor :refer [defon-request defon-response]]
             [ns-tracker.core :refer [ns-tracker]]
@@ -42,6 +43,8 @@
   {::http/interceptors [http/log-request
                         http/not-found
                         route/query-params
+                        (middleware/file-info)
+                        (middleware/resource "public")
                         (router (fn []
                                   (doseq [ns-sym (modified-namespaces)]
                                     (require ns-sym :reload))
