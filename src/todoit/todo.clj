@@ -23,5 +23,8 @@
                    "</html>"))))
 
 (defhandler create [req]
-  ;; Implement me!
-  )
+  (let [title (get-in req [:form-params "title"])
+        desc (get-in req [:form-params "description"])]
+    (when title
+      (db/create-todo title desc))
+    (redirect (url-for :todos))))
