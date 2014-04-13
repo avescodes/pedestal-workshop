@@ -36,3 +36,10 @@
                (some? status))
       (db/toggle-status id status)))
   (redirect (url-for :todos)))
+
+(defhandler delete-all [req]
+  (let [todos (db/all-todos (d/db db/conn))
+        ids (map :db/id todos)]
+    (doall
+     (map db/delete-todo ids)))
+  (redirect (url-for :todos)))

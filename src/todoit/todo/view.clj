@@ -26,6 +26,13 @@
      [:input {:type :hidden :name "status" :value (str (not current-status))}]
      [:button {:type "submit" :class class} label]]))
 
+(defn delete-all-form []
+  [:form
+   {:action (url-for :todos#delete-all
+                     :method-param "_method")
+    :method :post}
+   [:button.btn.btn-danger {:type "submit"} "Delete All"]])
+
 (defn todo-form [] ;; Later, this could take an existing todo...
   [:form.form-horizontal
    {:action (url-for :todos#create)
@@ -63,18 +70,20 @@
            [:h1 "My Todos"]
            [:div.row
             (if (seq todos)
-              [:table.table.table-striped
-               [:thead
-                [:tr
-                 [:th "Title"]
-                 [:th "Description"]]]
-               [:tbody
-                (for [todo todos]
-                  [:tr
-                   [:td (:todo/title todo)]
-                   [:td (:todo/description todo)]
-                   [:td (toggle-todo-form todo)]
-                   [:td (delete-todo-form todo)]])]]
+              [:div
+               [:table.table.table-striped
+                [:thead
+                 [:tr
+                  [:th "Title"]
+                  [:th "Description"]]]
+                [:tbody
+                 (for [todo todos]
+                   [:tr
+                    [:td (:todo/title todo)]
+                    [:td (:todo/description todo)]
+                    [:td (toggle-todo-form todo)]
+                    [:td (delete-todo-form todo)]])]]
+               (delete-all-form)]
               [:p "All done!"])]
            (todo-form)]
           [:script {:src "http://code.jquery.com/jquery-2.1.0.min.js"}]

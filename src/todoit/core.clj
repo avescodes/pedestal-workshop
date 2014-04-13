@@ -35,7 +35,8 @@
      ["/goodbye" {:get goodbye-cruel-world}]
      ["/request" {:any handle-dump}]
      ["/todos" {:get [:todos todo/index]
-                :post [:todos#create todo/create]}
+                :post [:todos#create todo/create]
+                :delete [:todos#delete-all todo/delete-all]}
       ["/:id" {:delete [:todo#delete todo/delete]}
        ["/toggle" {:put [:todo#toggle todo/toggle]}]]]]]])
 
