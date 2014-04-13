@@ -1,22 +1,38 @@
 (ns todoit.core
   (:require [io.pedestal.http.route.definition :refer [defroutes]]
-            [io.pedestal.http.route :refer [router]]
+            [io.pedestal.http.route :as route :refer [router]]
             [io.pedestal.http :as http]
-            [ns-tracker.core :refer [ns-tracker]]))
+            [io.pedestal.interceptor :refer [defon-request]]
+            [ns-tracker.core :refer [ns-tracker]]
+            [ring.handler.dump :refer [handle-dump]]))
 
 (defn hello-world [req]
+  (let [name (get-in req [:query-params :name])]
+    {:status 200
+     :body (str "Hello, " name "!")
+     :headers {}}))
+
+(defon-request capitalize-name [req]
+  (update-in req [:query-params :name] (fn [name] (when name
+                                                    (clojure.string/capitalize name)))))
+
+(defn goodbye-cruel-world [req]
   {:status 200
-   :body "Hello, world!"
+   :body "Goodbye, cruel world!"
    :headers {}})
 
 (defroutes routes
   [[["/"
-     ["/hello" {:get hello-world}]]]])
+     ["/hello" ^:interceptors [capitalize-name] {:get hello-world}]
+     ["/goodbye" {:get goodbye-cruel-world}]
+     ["/request" {:any handle-dump}]]]])
 
 (def modified-namespaces (ns-tracker "src"))
 
 (def service
   {::http/interceptors [http/log-request
+                        http/not-found
+                        route/query-params
                         (router (fn []
                                   (doseq [ns-sym (modified-namespaces)]
                                     (require ns-sym :reload))
