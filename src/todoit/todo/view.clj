@@ -12,6 +12,20 @@
     :method :post}
    [:button.btn.btn-danger {:type "submit"} "Delete"]])
 
+(defn toggle-todo-form [todo]
+  (let [current-status (:todo/completed? todo)
+        class (str "btn " (if current-status
+                            "btn-warning"
+                            "btn-success"))
+        label (if current-status "Uncomplete" "Complete")]
+    [:form
+     {:action (url-for :todo#toggle
+                       :params {:id (:db/id todo)}
+                       :method-param "_method")
+      :method :post}
+     [:input {:type :hidden :name "status" :value (str (not current-status))}]
+     [:button {:type "submit" :class class} label]]))
+
 (defn todo-form [] ;; Later, this could take an existing todo...
   [:form.form-horizontal
    {:action (url-for :todos#create)
@@ -59,6 +73,7 @@
                   [:tr
                    [:td (:todo/title todo)]
                    [:td (:todo/description todo)]
+                   [:td (toggle-todo-form todo)]
                    [:td (delete-todo-form todo)]])]]
               [:p "All done!"])]
            (todo-form)]

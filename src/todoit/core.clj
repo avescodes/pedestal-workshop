@@ -36,7 +36,8 @@
      ["/request" {:any handle-dump}]
      ["/todos" {:get [:todos todo/index]
                 :post [:todos#create todo/create]}
-      ["/:id" {:delete [:todo#delete todo/delete]}]]]]])
+      ["/:id" {:delete [:todo#delete todo/delete]}
+       ["/toggle" {:put [:todo#toggle todo/toggle]}]]]]]])
 
 (def modified-namespaces (ns-tracker "src"))
 

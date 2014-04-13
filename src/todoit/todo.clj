@@ -17,8 +17,22 @@
       (db/create-todo title desc))
     (redirect (url-for :todos))))
 
+(defn id [request]
+  (some-> request
+          (get-in [:path-params :id])
+          Long/parseLong))
+
 (defhandler delete [req]
-  (when-let [id (some-> (get-in req [:path-params :id])
-                        Long/parseLong)]
+  (when-let [id (id req)]
     (db/delete-todo id))
+  (redirect (url-for :todos)))
+
+(defhandler toggle [req]
+  (let [id (id req)
+        status (some-> req
+                       (get-in [:form-params "status"])
+                       Boolean/parseBoolean)]
+    (when (and id
+               (some? status))
+      (db/toggle-status id status)))
   (redirect (url-for :todos)))
