@@ -41,7 +41,9 @@
                                     (require ns-sym :reload))
                                   routes))]
    ::http/join? false
-   ::http/port 8080})
+   ::http/port (or (some-> (System/getenv "PORT")
+                           Integer/parseInt)
+                   8080)})
 
 (defn -main [& args]
   (-> service
