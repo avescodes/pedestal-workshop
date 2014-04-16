@@ -44,13 +44,13 @@ checkpoint-x` and start with a clean, working state.
 
 Checkpoint branches are:
 
-* [exercise-1](../tree/exercise-1) - Basic application with only [/hello](localhost:8080/hello)
-* [exercise-2](../tree/exercise-2) - [/hello?name=You!](localhost:8080/hello?name=you!)
-* [exercise-3](../tree/exercise-3) - Heroku deployable application
-* [exercise-4](../tree/exercise-4) - Transient persistence via in-memory Datomic ([todoit.todo.db](src/todoit/todo/db.clj))
-* [exercise-5](../tree/exercise-5) - [/todos](localhost:8080/todos) with a stubbed TODO form
-* [exercise-6](../tree/exercise-6) - Bootstrap paint job!
-* [exercise-7](../tree/exercise-7) - Finally, [/todos](localhost:8080/todos) can create, read, update, and destroy TODOs.
+* [exercise-1](../../tree/exercise-1) - Basic application with only [/hello](localhost:8080/hello)
+* [exercise-2](../../tree/exercise-2) - [/hello?name=You!](localhost:8080/hello?name=you!)
+* [exercise-3](../../tree/exercise-3) - Heroku deployable application
+* [exercise-4](../../tree/exercise-4) - Transient persistence via in-memory Datomic ([todoit.todo.db](src/todoit/todo/db.clj))
+* [exercise-5](../../tree/exercise-5) - [/todos](localhost:8080/todos) with a stubbed TODO form
+* [exercise-6](../../tree/exercise-6) - Bootstrap paint job!
+* [exercise-7](../../tree/exercise-7) - Finally, [/todos](localhost:8080/todos) can create, read, update, and destroy TODOs.
 
 ## License
 
