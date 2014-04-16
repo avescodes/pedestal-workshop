@@ -37,14 +37,20 @@ If you've built or checked-out the final version of the application, visit <http
 
 ### Following along with the workshop
 
-The slides for following along with this workshop are available at <http://TODO>.
+The slides for following along with this workshop are available at <https://speakerdeck.com/rkneufeld/web-apps-on-a-pedestal>.
 
 Branches exist for each exercise, allowing you to `git checkout
 checkpoint-x` and start with a clean, working state.
 
 Checkpoint branches are:
 
-* TODO
+* [exercise-1](../tree/exercise-1) - Basic application with only [/hello](localhost:8080/hello)
+* [exercise-2](../tree/exercise-2) - [/hello?name=You!](localhost:8080/hello?name=you!)
+* [exercise-3](../tree/exercise-3) - Heroku deployable application
+* [exercise-4](../tree/exercise-4) - Transient persistence via in-memory Datomic ([todoit.todo.db](src/todoit/todo/db.clj))
+* [exercise-5](../tree/exercise-5) - [/todos](localhost:8080/todos) with a stubbed TODO form
+* [exercise-6](../tree/exercise-6) - Bootstrap paint job!
+* [exercise-7](../tree/exercise-7) - Finally, [/todos](localhost:8080/todos) can create, read, update, and destroy TODOs.
 
 ## License
 
