@@ -1,6 +1,6 @@
 # Todo-it
 
-Todo-it is a sample Pedestal application developed from scratch. Read more information below, or in the accompanying [slides](TODO).
+Todo-it is a sample Pedestal application developed from scratch. Read more information below, or in the accompanying [slides](https://speakerdeck.com/rkneufeld/web-apps-on-a-pedestal).
 
 ## Usage
 
