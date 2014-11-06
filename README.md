@@ -2,6 +2,8 @@
 
 Todo-it is a sample Pedestal application developed from scratch. Read more information below, or in the accompanying [slides](https://speakerdeck.com/rkneufeld/web-apps-on-a-pedestal).
 
+A video workshop walking through the construction of this project is available in my O'Reilly webcast [Building Web Applications in Clojure](http://www.oreilly.com/pub/e/3039).
+
 ## Usage
 
 ### Pre-requisites
